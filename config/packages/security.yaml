@@ -33,18 +33,19 @@ security:
                secret: thisisthesecretkey
                lifetime: 604800
                path: /
+               #always_remember_me: true
             oauth:
               resource_owners:
-                  auth0: "/auth0/callback"
-                  facebook: "login/check-facebook"
-                  google: "login/check-google"
-                  twitter: "login/check-twitter"
-                  github: "login/check-github"
-                  gitlab: "login/check-gitlab"
-                  linkedin: "login/check-linkedin"
+                  auth0: auth0_login
+                  facebook: facebook_login   
+                  google: google_login
+                  twitter: twitter_login
+                  github: github_login 
+                  gitlab: gitlab_login
+                  linkedin: linkedin_login
                 #   bitbucket: "login/check-bitbucket"
-                  instagram: "login/check-instagram"
-                  sensio: "login/check-sensio"
+                  instagram: instagram_login
+                  sensio: sensio_connect_login
               login_path: /login
               failure_path: /login
               use_forward: false
@@ -56,6 +57,7 @@ security:
               path: /logout
               target: /login
             entry_point: 'form_login'
+            custom_authenticator: App\Security\LoginAuthenticator
             # activate different ways to authenticate
 
             # http_basic: true

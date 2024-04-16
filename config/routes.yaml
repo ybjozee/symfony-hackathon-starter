@@ -25,7 +25,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-
+    
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.php"
     prefix:   /connect
