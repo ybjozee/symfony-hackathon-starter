@@ -35,23 +35,25 @@ security:
                path: /
             oauth:
               resource_owners:
-                  facebook: "/secured/login_facebook"
-                  google: "/secured/login_google"
-                  twitter: "/secured/login_twitter"
                   auth0: "/auth0/callback"
-                  github: "/secured/login_github"
-                  gitlab: "/secured/login_gitlab"
-                  linkedin: "/secured/login_linkedin"
-                  bitbucket: "/secured/login_bitbucket"
-                  instagram: "/secured/login_instagram"
-              login_path: fos_user_security_login
-              failure_path: fos_user_security_login
+                  facebook: "login/check-facebook"
+                  google: "login/check-google"
+                  twitter: "login/check-twitter"
+                  github: "login/check-github"
+                  gitlab: "login/check-gitlab"
+                  linkedin: "login/check-linkedin"
+                #   bitbucket: "login/check-bitbucket"
+                  instagram: "login/check-instagram"
+                  sensio: "login/check-sensio"
+              login_path: /login
+              failure_path: /login
+              use_forward: false
 
               oauth_user_provider:
                   service: App\Security\UserProvider
 #            anonymous: true
             logout:
-              path: fos_user_security_logout
+              path: /logout
               target: /login
             entry_point: 'form_login'
             # activate different ways to authenticate
@@ -66,6 +68,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/login$, role: PUBLIC_ACCESS }
+         - { path: ^/connect, role: PUBLIC_ACCESS }
          - { path: ^/register, role: PUBLIC_ACCESS }
          - { path: ^/resetting, role: PUBLIC_ACCESS }
          - { path: ^/admin/, role: ROLE_ADMIN }
